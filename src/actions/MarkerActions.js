@@ -60,6 +60,10 @@ export function saveMarkers() {
 
 export function loadMarkers(username, password) {
   return (dispatch) => {
+    dispatch({
+      type: START_REQUEST_MARKERS
+    });
+
     markerService
       .loadMarkers()
       .then(

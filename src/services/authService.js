@@ -14,13 +14,17 @@ export default {
       auth: authPair
     })
       .then(
-        () => {
+        (result) => {
           this.isAuthenticated = true;
           axios.defaults.auth = authPair;
+
+          return true;
         },
         () => {
           this.isAuthenticated = false;
           delete axios.defaults.auth;
+
+          throw false;
         }
       );
   },
