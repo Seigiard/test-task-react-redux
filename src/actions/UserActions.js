@@ -1,5 +1,5 @@
 import authService from '../services/authService';
-import { LOGIN_REJECT, LOGIN_SUCCESS, START_LOGIN_REQUEST, END_LOGIN_REQUEST, LOGIN_ERROR } from '../constants/User.js';
+import { END_LOGIN_REQUEST, LOGIN_ERROR, LOGIN_REJECT, LOGIN_SUCCESS, START_LOGIN_REQUEST } from '../constants/User.js';
 
 export function login(username, password) {
   return (dispatch) => {

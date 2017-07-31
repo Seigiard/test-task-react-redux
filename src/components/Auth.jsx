@@ -12,8 +12,8 @@ class Auth extends React.Component {
     super(props);
 
     this.state = {
-      login: 'admin1',
-      password: 'password1'
+      login: 'admin',
+      password: 'password'
     };
 
     this.loginAction = this.props.userActions.login;
@@ -41,7 +41,8 @@ class Auth extends React.Component {
     return (
       <div>
         <h1>Auth</h1>
-        <AuthForm disabled={this.props.isFormDisabled} login={this.state.login} password={this.state.password} onSubmit={this.onFormSubmit.bind(this)}
+        <AuthForm disabled={this.props.isFormDisabled} login={this.state.login} password={this.state.password}
+                  onSubmit={this.onFormSubmit.bind(this)}
                   onInputChange={this.handleInputChange.bind(this)}/>
         <p>{this.props.authMessage}</p>
       </div>
