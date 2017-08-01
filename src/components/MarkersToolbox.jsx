@@ -1,33 +1,40 @@
 import React from 'react';
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import * as markerActions from '../actions/MarkerActions'
+import {saveMarkers, loadMarkers} from '../actions/MarkerActions'
 
 const MarkersToolbox = (props) => {
-  const {saveMarkers, loadMarkers} = props.markerActions;
+  const {
+    saveMarkers,
+    loadMarkers,
+    markers,
+    savedMarkersAmount,
+    isFetchingMarkers,
+    requestError
+  } = props;
 
   return (
     <footer>
-      <button disabled={!props.markers.length || props.fetchingMarkers} onClick={saveMarkers}>Save Markers</button>
-      <button disabled={!props.savedMarkersAmount || props.fetchingMarkers} onClick={loadMarkers}>Load Markers</button>
-      { props.requestError ? <p>{requestError}</p> : '' }
+      <button disabled={!markers.length || isFetchingMarkers} onClick={saveMarkers}>Save Markers</button>
+      <button disabled={!savedMarkersAmount || isFetchingMarkers} onClick={loadMarkers}>Load Markers</button>
+      { requestError ? <p>{requestError}</p> : '' }
     </footer>
   );
-}
+};
 
 function mapStateToProps(state) {
   return {
     savedMarkersAmount: state.markers.savedMarkersAmount,
-    fetchingMarkers: state.markers.fetchingMarkers,
+    isFetchingMarkers: state.markers.isFetchingMarkers,
     markers: state.markers.markers,
     requestError: state.markers.requestError
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps() {
   return {
-    markerActions: bindActionCreators(markerActions, dispatch)
+    saveMarkers: saveMarkers,
+    loadMarkers: loadMarkers
   }
 }
 

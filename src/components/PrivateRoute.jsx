@@ -1,11 +1,11 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import authService from '../services/authService.js';
+import { connect } from 'react-redux';
 
-export default ({component: Component, ...rest}) => {
+const PrivateRoute = ({component: Component, isAuthenticated: isAuthenticated, ...rest}) => {
   return (
-    <Route {...rest} render={props => (
-      authService.isAuthenticated ? (
+    <Route {...rest} render={ props => (
+      isAuthenticated ? (
         <Component {...props}/>
       ) : (
         <Redirect to={{
@@ -13,6 +13,14 @@ export default ({component: Component, ...rest}) => {
           state: {from: props.location}
         }}/>
       )
-    )}/>
+    ) }/>
   )
+};
+
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: state.user.isAuthenticated
+  };
 }
+
+export default connect(mapStateToProps)(PrivateRoute)

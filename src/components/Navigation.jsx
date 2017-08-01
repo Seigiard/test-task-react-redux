@@ -1,31 +1,30 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import * as userActions from '../actions/UserActions.js'
+import { logout } from '../actions/UserActions';
 
-const Navigation = (props) => {
+const Navigation = ({isAuthenticated, logout}) => {
   return (
     <nav>
       <ul className="nav navbar-nav">
-        {props.username ? '' : <li><NavLink to="/auth" replace>Auth</NavLink></li>}
+        {isAuthenticated ? <li><a onClick={logout}>Logout</a></li> : <li><NavLink to="/auth" replace>Auth</NavLink></li>}
         <li><NavLink to="/" replace>Main Page</NavLink></li>
         <li><NavLink to="/about" replace>About</NavLink></li>
       </ul>
     </nav>
   );
-}
+};
 
 function mapStateToProps(state) {
   return {
-    username: state.user.username
+    isAuthenticated: state.user.isAuthenticated
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps() {
   return {
-    userActions: bindActionCreators(userActions, dispatch)
+    logout: logout
   }
 }
 

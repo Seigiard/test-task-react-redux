@@ -11,7 +11,7 @@ import {
 const initialState = {
   markers: [],
   savedMarkersAmount: 0,
-  fetchingMarkers: false,
+  isFetchingMarkers: false,
   requestError: null,
 };
 
@@ -30,10 +30,10 @@ export default function markersState(state = initialState, action) {
       return {...state, savedMarkersAmount: action.payload};
 
     case START_REQUEST_MARKERS:
-      return {...state, fetchingMarkers: true};
+      return {...state, isFetchingMarkers: true};
 
     case END_REQUEST_MARKERS:
-      return {...state, fetchingMarkers: false};
+      return {...state, isFetchingMarkers: false};
 
     case REQUEST_MARKERS_ERROR:
       return {...state, requestError: action.payload};

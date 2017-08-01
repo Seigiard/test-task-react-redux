@@ -2,6 +2,7 @@ import { END_LOGIN_REQUEST, LOGIN_ERROR, LOGIN_REJECT, LOGIN_SUCCESS, START_LOGI
 
 const initialState = {
   username: false,
+  isAuthenticated: false,
   isFetchingAuth: false,
   authMessage: false
 };
@@ -10,10 +11,10 @@ export default function page(state = initialState, action) {
 
   switch (action.type) {
     case LOGIN_SUCCESS:
-      return {...state, username: action.payload, authMessage: false};
+      return {...state, username: action.payload, isAuthenticated: true, authMessage: false};
 
     case LOGIN_REJECT:
-      return {...state, username: false};
+      return {...state, username: false, isAuthenticated: false };
 
     case START_LOGIN_REQUEST:
       return {...state, isFetchingAuth: true};

@@ -2,8 +2,8 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import PrivateRoute from './components/PrivateRoute.jsx';
-import Auth from './components/Auth.jsx';
-import MainPage from './components/MainPage.jsx';
+import Auth from './components/AuthContainer.jsx';
+import MainPage from './components/MainPageContainer.jsx';
 import About from './components/About.jsx';
 
 const Routes = (

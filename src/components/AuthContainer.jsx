@@ -17,6 +17,9 @@ class Auth extends React.Component {
     };
 
     this.loginAction = this.props.userActions.login;
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   handleInputChange(event) {
@@ -35,16 +38,19 @@ class Auth extends React.Component {
   }
 
   render() {
-    if (this.props.username) {
+    const { login, password } = this.state;
+    const { isFormDisabled, authMessage, isAuthenticated } = this.props;
+
+    if (isAuthenticated) {
       return <Redirect to="/"/>
     }
     return (
       <div>
-        <h1>Auth</h1>
-        <AuthForm disabled={this.props.isFormDisabled} login={this.state.login} password={this.state.password}
-                  onSubmit={this.onFormSubmit.bind(this)}
-                  onInputChange={this.handleInputChange.bind(this)}/>
-        <p>{this.props.authMessage}</p>
+        <h1>Auth </h1>
+        <AuthForm disabled={isFormDisabled} login={login} password={password}
+                  onSubmit={this.onFormSubmit}
+                  onInputChange={this.handleInputChange}/>
+        <p>{authMessage}</p>
       </div>
     )
   }
@@ -54,7 +60,8 @@ function mapStateToProps(state) {
   return {
     username: state.user.username,
     authMessage: state.user.authMessage,
-    isFormDisabled: state.user.isFetchingAuth
+    isFormDisabled: state.user.isFetchingAuth,
+    isAuthenticated: state.user.isAuthenticated
   };
 }
 

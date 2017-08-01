@@ -33,3 +33,9 @@ export function login(username, password) {
       );
   }
 }
+
+export function logout() {
+  return {
+    type: LOGIN_REJECT
+  }
+}
