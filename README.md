@@ -4,8 +4,6 @@ My first project with React.
 
 First time I heard about React four years ago, but never had any project on it. 
 
-This is project on React I want to solve.
-
 I spent about 16 hours to build this project from scratch.
 
 ## Requirements
