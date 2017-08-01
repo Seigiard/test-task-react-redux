@@ -32,7 +32,7 @@ I spent about 16 hours to build this project from scratch.
   * Authorization (Basic auth)
 10. Review http://api.2gis.ru/doc/maps/quickstart/
 11. Create list with type of objects to be chosen (pharmacies, gas stations, schools,  restaurants) so click on the list item has to draw markers on the map with the closest chosen objects    
-Not realized, because 2GIS closed their API about companies.
+**Not realized, because 2GIS closed their API about companies.**
 
 
 ## Installation
