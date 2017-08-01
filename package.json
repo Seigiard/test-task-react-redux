@@ -6,8 +6,8 @@
   "author": "Andrew Borisenko",
   "license": "MIT",
   "scripts": {
-    "start": "node ./server & webpack-dev-server",
-    "build": "webpack -p"
+    "dev": "node ./server & webpack-dev-server",
+    "prod": "webpack -p && node ./server --env=production"
   },
   "dependencies": {
     "2gis-maps": "^3.3.5",
@@ -38,6 +38,7 @@
     "html-webpack-plugin": "^2.29.0",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
+    "minimist": "^1.2.0",
     "mongodb": "^2.2.30",
     "path": "^0.12.7",
     "prettier": "^1.5.3",
