@@ -1,11 +1,12 @@
 import {
-  CLEAR_MARKERS,
   END_REQUEST_MARKERS,
-  LOAD_MARKERS,
+  SET_VISIBLE_MARKERS,
+  SET_SAVED_MARKERS,
   REQUEST_MARKERS_ERROR,
-  SAVE_MARKERS,
+  CLEAR_VISIBLE_MARKERS,
+  CLEAR_SAVED_MARKERS,
   SET_MARKER,
-  SET_SAVED_MARKERS_AMOUNT,
+  SET_SERVER_MARKERS_AMOUNT,
   START_REQUEST_MARKERS
 } from '../constants/Marker';
 import markerService from '../services/markerService';
@@ -17,25 +18,49 @@ export function setMarker(coordinates) {
   }
 }
 
-export function saveMarkers() {
+export function saveMarkersLocal() {
+  return (dispatch, getState) => {
+    dispatch({
+      type: SET_SAVED_MARKERS,
+      payload: getState().markers.visibleMarkers
+    });
+    dispatch({
+      type: CLEAR_VISIBLE_MARKERS
+    });
+  }
+}
+
+export function loadMarkersLocal() {
+  return (dispatch, getState) => {
+    dispatch({
+      type: SET_VISIBLE_MARKERS,
+      payload: getState().markers.savedMarkers
+    });
+    dispatch({
+      type: CLEAR_SAVED_MARKERS
+    });
+  }
+}
+
+export function saveMarkersOnServer() {
   return (dispatch, getState) => {
     dispatch({
       type: START_REQUEST_MARKERS
     });
 
     markerService
-      .saveMarkers(getState().markers.markers)
+      .saveMarkers(getState().markers.visibleMarkers)
       .then(
         (result) => {
           dispatch({
             type: END_REQUEST_MARKERS
           });
           dispatch({
-            type: SET_SAVED_MARKERS_AMOUNT,
+            type: SET_SERVER_MARKERS_AMOUNT,
             payload: result.data.length
           });
           dispatch({
-            type: SAVE_MARKERS
+            type: CLEAR_VISIBLE_MARKERS
           });
         },
         (error) => {
@@ -52,7 +77,7 @@ export function saveMarkers() {
   }
 }
 
-export function loadMarkers(username, password) {
+export function loadMarkersFromServer() {
   return (dispatch) => {
     dispatch({
       type: START_REQUEST_MARKERS
@@ -66,11 +91,11 @@ export function loadMarkers(username, password) {
             type: END_REQUEST_MARKERS
           });
           dispatch({
-            type: SET_SAVED_MARKERS_AMOUNT,
+            type: SET_SERVER_MARKERS_AMOUNT,
             payload: 0
           });
           dispatch({
-            type: LOAD_MARKERS,
+            type: SET_VISIBLE_MARKERS,
             payload: markers
           });
         },

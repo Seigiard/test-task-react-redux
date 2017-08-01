@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { setMarker } from '../actions/MarkerActions';
 
-const MapContainer = ({setMarker, geolocation, markers}) => {
+const MapContainer = ({setMarker, geolocation, visibleMarkers}) => {
   const setMapMarker = (e) => {
     setMarker({
       latitude: e.latlng.lat,
@@ -23,7 +23,7 @@ const MapContainer = ({setMarker, geolocation, markers}) => {
       zoom={13}
       fullscreenControl={false}
     >
-      {markers.map((marker, i) => <Marker key={i} pos={[marker.latitude, marker.longitude]}/>)}
+      {visibleMarkers.map((marker, i) => <Marker key={i} pos={[marker.latitude, marker.longitude]}/>)}
     </Map>
   )
 };
@@ -31,7 +31,7 @@ const MapContainer = ({setMarker, geolocation, markers}) => {
 function mapStateToProps(state) {
   return {
     geolocation: state.geolocation,
-    markers: state.markers.markers,
+    visibleMarkers: state.markers.visibleMarkers,
   };
 }
 
