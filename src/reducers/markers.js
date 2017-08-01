@@ -6,7 +6,7 @@ import {
   SET_MARKER,
   SET_SAVED_MARKERS_AMOUNT,
   START_REQUEST_MARKERS
-} from '../constants/Marker'
+} from '../constants/Marker';
 
 const initialState = {
   markers: [],

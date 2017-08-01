@@ -1,7 +1,8 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
-import {saveMarkers, loadMarkers} from '../actions/MarkerActions'
+import { loadMarkers, saveMarkers } from '../actions/MarkerActions'
 
 const MarkersToolbox = (props) => {
   const {
@@ -17,7 +18,7 @@ const MarkersToolbox = (props) => {
     <footer>
       <button disabled={!markers.length || isFetchingMarkers} onClick={saveMarkers}>Save Markers</button>
       <button disabled={!savedMarkersAmount || isFetchingMarkers} onClick={loadMarkers}>Load Markers</button>
-      { requestError ? <p>{requestError}</p> : '' }
+      {requestError ? <p>{requestError}</p> : ''}
     </footer>
   );
 };
@@ -31,11 +32,11 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps() {
-  return {
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
     saveMarkers: saveMarkers,
     loadMarkers: loadMarkers
-  }
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarkersToolbox)

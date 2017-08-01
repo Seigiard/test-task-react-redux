@@ -1,9 +1,9 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import * as userActions from '../actions/UserActions.js'
+import { login } from '../actions/UserActions.js'
 
 import AuthForm from './AuthForm.jsx'
 
@@ -16,7 +16,7 @@ class Auth extends React.Component {
       password: 'password'
     };
 
-    this.loginAction = this.props.userActions.login;
+    this.loginAction = this.props.loginAction;
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -38,8 +38,8 @@ class Auth extends React.Component {
   }
 
   render() {
-    const { login, password } = this.state;
-    const { isFormDisabled, authMessage, isAuthenticated } = this.props;
+    const {login, password} = this.state;
+    const {isFormDisabled, authMessage, isAuthenticated} = this.props;
 
     if (isAuthenticated) {
       return <Redirect to="/"/>
@@ -66,9 +66,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    userActions: bindActionCreators(userActions, dispatch)
-  }
+  return bindActionCreators({
+    loginAction: login
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth)

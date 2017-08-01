@@ -7,19 +7,13 @@ import {
   SET_MARKER,
   SET_SAVED_MARKERS_AMOUNT,
   START_REQUEST_MARKERS
-} from '../constants/Marker'
-import markerService from '../services/markerService'
+} from '../constants/Marker';
+import markerService from '../services/markerService';
 
 export function setMarker(coordinates) {
   return {
     type: SET_MARKER,
     payload: coordinates
-  }
-}
-
-export function clearMarkers() {
-  return {
-    type: CLEAR_MARKERS
   }
 }
 

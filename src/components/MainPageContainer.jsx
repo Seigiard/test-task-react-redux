@@ -1,6 +1,6 @@
 import React from 'react';
-import Map from './Map.jsx';
-import Geolocation from './Geolocation.jsx';
+import Map from './MapContainer.jsx';
+import Geolocation from './GeolocationContainer.jsx';
 import MarkersToolbox from './MarkersToolbox.jsx';
 
 export default () => {

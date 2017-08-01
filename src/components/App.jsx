@@ -1,13 +1,13 @@
 import React from 'react';
 import Navigation from './Navigation.jsx';
 
-const App = (props) => (
+const App = ({children}) => (
   <div>
     <header>
       <Navigation/>
     </header>
     <main>
-      {props.children}
+      {children}
     </main>
     <footer>
       <hr/>

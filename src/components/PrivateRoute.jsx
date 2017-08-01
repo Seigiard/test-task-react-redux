@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const PrivateRoute = ({component: Component, isAuthenticated: isAuthenticated, ...rest}) => {
   return (
-    <Route {...rest} render={ props => (
+    <Route {...rest} render={props => (
       isAuthenticated ? (
         <Component {...props}/>
       ) : (
@@ -13,7 +13,7 @@ const PrivateRoute = ({component: Component, isAuthenticated: isAuthenticated, .
           state: {from: props.location}
         }}/>
       )
-    ) }/>
+    )}/>
   )
 };
 
