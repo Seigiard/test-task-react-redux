@@ -54,3 +54,9 @@ Start up webpack and express server.
 Build package and start up express server.
 
 [http://localhost:3000](http://localhost:3000)
+
+## Anti-slop lint
+
+Use Node 24 and Yarn 1.22.22. Run `yarn --cwd tools/oxlint install --frozen-lockfile`, then `yarn lint:anti-slop` from the repository root. CI runs the same check on pushes and pull requests. Application dependencies are not needed for this check.
+
+All 18 generic anti-slop rules and `oxc/no-accumulating-spread` are errors. Existing findings are reported without changing application code. Source revision and licenses are recorded in [UPSTREAM.md](tools/oxlint/anti-slop/UPSTREAM.md).
